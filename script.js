@@ -104,26 +104,29 @@ function HighJump(AwardCeremony,score){
     AwardCeremony(score); 
 } 
 function AwardCeremony(score){
-    let r=true,b=true,g=true;
+    let r=true,b=true,g=true,y=true;
     console.log('Let the AwardCeremony begin!');
     let array=[score.red,score.blue,score.green,score.yellow];
     array=array.sort((a,b)=>{
 return b-a; });
+//if scores are tie both colors come in same place!
+//not enough data is given how the code should behave in case of tie!
     array.forEach((item,i)=>{
 if (item==score.red && r) {
     r=false;
-   place(i,"Red",score.red);
-}else if(item==score.blue && b) {
+   place(i,"Red",score.red);}
+if(item==score.blue && b) {
     b=false;
-    place(i,"Blue",score.blue);
-}else if(item==score.green && g){
+    place(i,"Blue",score.blue);}
+if(item==score.green && g){
     g=false;
-    place(i,"Green",score.green);
-}else{
+    place(i,"Green",score.green);}
+if(item==score.yellow && y){
+    y=false;
     place(i,"Yellow",score.yellow);
 }
     });
-   function place(val,name,points){
+function place(val,name,points){
 if(val==0){
     console.log(`${name} came first with ${points} points.`);
 }else if(val==1){
