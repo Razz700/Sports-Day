@@ -80,6 +80,7 @@ setTimeout(() => {
 function HighJump(AwardCeremony,score){
     console.log('Let the HighJump begin!');
     let value=prompt("What colour secured the highest jump?");
+     value=value.toLowerCase();
     if(value=="red"){
         score.red+=100;
         console.log(`Winner:red`); 
