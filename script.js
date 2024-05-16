@@ -80,7 +80,8 @@ setTimeout(() => {
 function HighJump(AwardCeremony,score){
     console.log('Let the HighJump begin!');
     let value=prompt("What colour secured the highest jump?");
-     value=value.toLowerCase();
+    if(value!=null){
+    value=value.toLowerCase();}
     if(value=="red"){
         score.red+=100;
         console.log(`Winner:red`); 
@@ -103,41 +104,35 @@ function HighJump(AwardCeremony,score){
     AwardCeremony(score); 
 } 
 function AwardCeremony(score){
-    let red,blue,green,yellow;
+    let r=true,b=true,g=true;
     console.log('Let the AwardCeremony begin!');
     let array=[score.red,score.blue,score.green,score.yellow];
     array=array.sort((a,b)=>{
 return b-a; });
     array.forEach((item,i)=>{
-if (item==score.red) {
-    red=i;
-}else if(item==score.blue) {
-    blue=i;
-}else if(item==score.green){
-    green=i;
+if (item==score.red && r) {
+    r=false;
+   place(i,"Red",score.red);
+}else if(item==score.blue && b) {
+    b=false;
+    place(i,"Blue",score.blue);
+}else if(item==score.green && g){
+    g=false;
+    place(i,"Green",score.green);
 }else{
-    yellow=i;
+    place(i,"Yellow",score.yellow);
 }
     });
-    ///First place;
-if(red==0){console.log(`Red came first with ${score.red} points.`);}
-else if(blue==0){console.log(`Blue came first with ${score.blue} points.`);}
-else if(green==0){console.log(`Green came first with ${score.green} points.`);}
-else{console.log(`Yellow came first with ${score.yellow} points.`);}
-//second place
-if(red==1){console.log(`Red came second with ${score.red} points.`);}
-else if(blue==1){console.log(`Blue came second with ${score.blue} points.`);}
-else if(green==1){console.log(`Green came second with ${score.green} points.`);}
-else{console.log(`Yellow came second with ${score.yellow} points.`);}
-//3rd place
-if(red==2){console.log(`Red came third with ${score.red} points.`);}
-else if(blue==2){console.log(`Blue came third with ${score.blue} points.`);}
-else if(green==2){console.log(`Green came third with ${score.green} points.`);}
-else{console.log(`Yellow came third with ${score.yellow} points.`);}
-if(red==3){console.log(`Red came last with ${score.red} points.`);}
-else if(blue==3){console.log(`Blue came last with ${score.blue} points.`);}
-else if(green==3){console.log(`Green came last with ${score.green} points.`);}
-else{console.log(`Yellow came last with ${score.yellow} points.`);}
-
+   function place(val,name,points){
+if(val==0){
+    console.log(`${name} came first with ${points} points.`);
+}else if(val==1){
+    console.log(`${name} came second with ${points} points.`);
+}else if(val==2){
+    console.log(`${name} came third with ${points} points.`);
+}else{
+    console.log(`${name} came last with ${points} points.`);
+}
+  }
 }
 OpeningCeremony(Race100M);
